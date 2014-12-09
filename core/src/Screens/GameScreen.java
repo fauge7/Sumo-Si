@@ -29,7 +29,7 @@ public class GameScreen implements Screen{
 	Game game;
 	FontUtility font;
 	Rectangle goRect;
-	OrthographicCamera cam;
+	static OrthographicCamera cam;
 	Viewport view;
 	public static Winner win;
 	public static Winner player;
@@ -50,6 +50,7 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(cam.combined);
+		rend.setProjectionMatrix(cam.combined);
 		cam.position.set(256, 256, 1);
 		cam.update();
 		batch.begin();
@@ -138,7 +139,7 @@ public class GameScreen implements Screen{
 		// TODO Auto-generated method stub
 		
 	}
-	public Vector2 getTouch(){
+	public static Vector2 getTouch(){
 		Vector3 temp = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
 		temp = cam.unproject(temp);
 		return new Vector2(temp.x,temp.y);
